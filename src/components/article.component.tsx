@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter"
 import {coy} from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 // @ts-ignore
 import MathJax from "@matejmazur/react-mathjax";
 import RemarkMathPlugin from "remark-math";
@@ -33,6 +34,20 @@ const renderers = {
   inlineMath: ({ value }: GenericRenderer) => <MathJax.Node inline>{value}</MathJax.Node>
 };
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
+const Title = styled.h1`
+  font-size: 28px;
+`;
+
+const PublishedDate = styled.div`
+  margin-left: 8px;
+  color: grey;
+`;
+
 const Article = ({ article }: ArticleComponentProps) => {
   let [ content, setContent ] = useState(null);
 
@@ -48,8 +63,10 @@ const Article = ({ article }: ArticleComponentProps) => {
     ? (
       <>
         <Link to={article.path}>
-          <h1>{article.title}</h1>
-          <h3>{article.getPublishedDate()}</h3>
+          <TitleContainer>
+            <Title>{article.title}</Title>
+            <PublishedDate>{article.getPublishedDate()}</PublishedDate>
+          </TitleContainer>
         </Link>
         <MathJax.Context input="tex">
             <ReactMarkdown
@@ -64,4 +81,4 @@ const Article = ({ article }: ArticleComponentProps) => {
 }
 
 
-export default Article
+export default Article;

@@ -12,7 +12,7 @@ function PostIndex () {
     fetch(`${process.env.PUBLIC_URL}/posts/list.json5`)
       .then(data => data.text())
       .then(data => JSON5.parse(data))
-      .then(data => _.map(data.posts, (post) => new ArticleModel(post)))
+      .then(data => _.map(data, (post) => new ArticleModel(post)))
       .then((posts: ArticleModel[]) => { setArticles(posts) })
   }, []);
 
@@ -27,11 +27,11 @@ function PostIndex () {
       <h1>Archives</h1>
       {
         _(organizedArticles).map((yearlyArticles, year) => (
-          <div style={{ marginBottom: 25 }}>
+          <div key={year} style={{ marginBottom: 25 }}>
             <h3>{year}</h3>
             {
               _(yearlyArticles).map((monthlyArticles, month) => (
-                <div style={{ marginBottom: 14 }}>
+                <div key={month} style={{ marginBottom: 14 }}>
                   <h4>{month}</h4>
                   {
                     _.map(monthlyArticles, article => {

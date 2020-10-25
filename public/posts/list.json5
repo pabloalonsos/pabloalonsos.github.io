@@ -1,18 +1,8 @@
 {
-  posts: {
-    "20200918-01-vote-by-mail.md": {
-      title: "Vote by Mail",
-      slug: "20200918-01-vote-by-mail",
-      publishedDate: "2020-09-18",
-      createdDate: "2020-09-18",
-      dailyArticleCount: '01'
-    },
-    "20201018-02-us-photo-id-numbers.md": {
-      title: "US Photo IDs",
-      slug: "20201018-02-us-photo-id-numbers",
-      publishedDate: "2020-10-18",
-      createdDate: "2020-10-18",
-      dailyArticleCount: '02'
-    }
-  },
+  "2020-9-25-18-first_article.md": {
+    "title": "First Article",
+    "slug": "2020-9-25-18-first_article",
+    "publishedDate": "2020-10-25T22:55:23.069Z",
+    "createdDate": "Sun Oct 25 2020 18:53:07 GMT-0400 (Eastern Daylight Time)"
+  }
 }

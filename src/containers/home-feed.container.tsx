@@ -14,10 +14,11 @@ function HomeFeed () {
       fetch(`${process.env.PUBLIC_URL}/posts/list.json5`)
         .then(data => data.text())
         .then(data => JSON5.parse(data))
-        .then(data => _.map(data.posts, (post) => new ArticleModel(post)))
+        .then(data => _.map(data, (post) => new ArticleModel(post)))
         .then((posts: ArticleModel[]) => { setArticles(posts) })
   }, []);
 
+  console.log(articles)
   return (
     <>
       {

@@ -12,7 +12,7 @@ build:
     script:
         - echo "Building deploy package"
         - yarn install
-        - yarn build
+#        - yarn build
         - echo "Build successful"
     artifacts:
         expire_in: 1 hour
