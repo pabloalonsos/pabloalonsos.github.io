@@ -1,0 +1,27 @@
+import React from 'react';
+import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import { Button, PageHeader } from "antd";
+
+const HeaderContainer = styled.header`
+  .title {
+    font-size: 28px;
+  }
+`
+
+export default function Header() {
+  return (
+    <HeaderContainer>
+      <PageHeader
+        title={<Link to="/"><span className="title" title="Site.org">Site.org</span></Link>}
+        subTitle="Writing about life, the universe and everything else."
+        extra={[
+          <Button key="2"><Link to="/rss">RSS</Link></Button>,
+          <Button key="2"><Link to="/index">Index</Link></Button>,
+          <Button key="2"><Link to="/about">About</Link></Button>,
+          <Button key="1"><Link to="/contact">Contact</Link></Button>,
+        ]}
+      />
+    </HeaderContainer>
+  );
+}

@@ -1,0 +1,18 @@
+{
+  posts: {
+    "20200918-01-vote-by-mail.md": {
+      title: "Vote by Mail",
+      slug: "20200918-01-vote-by-mail",
+      publishedDate: "2020-09-18",
+      createdDate: "2020-09-18",
+      dailyArticleCount: '01'
+    },
+    "20201018-02-us-photo-id-numbers.md": {
+      title: "US Photo IDs",
+      slug: "20201018-02-us-photo-id-numbers",
+      publishedDate: "2020-10-18",
+      createdDate: "2020-10-18",
+      dailyArticleCount: '02'
+    }
+  },
+}

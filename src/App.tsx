@@ -1,25 +1,61 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import 'antd/dist/antd.css';
+
+import Header from './containers/header.container';
+import Footer from './containers/footer.container';
+import About from "./containers/about.container";
+import Post from "./containers/post.container";
+import Contact from "./containers/contact.container";
+import HomeFeed from "./containers/home-feed.container";
+import PostIndex from "./containers/post-index.container";
+
+const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  main {
+    flex: 1;
+    margin: 0 25px;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppWrapper>
+        <Header />
+        <main>
+          <Switch>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="/posts/:slug">
+              <Post />
+            </Route>
+            <Route path="/contact">
+              <Contact />
+            </Route>
+            <Route path="/index">
+              <PostIndex />
+            </Route>
+            <Route path="/" exact>
+              <HomeFeed />
+            </Route>
+          </Switch>
+        </main>
+        <Footer />
+      </AppWrapper>
+    </Router>
   );
 }
 
