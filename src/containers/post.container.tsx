@@ -19,7 +19,7 @@ function Post() {
       .then(data => _.find(data.posts, { slug }))
       .then(data => new ArticleModel(data))
       .then(post => { setArticleSummary(post) })
-  }, []);
+  }, [slug]);
 
   return articleSummary ? (
     <Article article={articleSummary} />

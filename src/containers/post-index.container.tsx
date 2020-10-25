@@ -53,25 +53,6 @@ function PostIndex () {
       }
     </>
   );
-
-  return (
-    <>
-      <h1>Archives</h1>
-      {
-        _(articles).sortBy('publishedDate').map((article) => {
-          return (
-            <div key={article.path}>
-              <Link to={article.path}>
-                {article.title}
-              </Link>
-              <span> -- {article.getPublishedDate()}</span>
-            </div>
-          )
-        }).value()
-      }
-    </>
-  )
-
 }
 
 export default PostIndex;
