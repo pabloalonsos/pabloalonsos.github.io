@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactMarkdown from "react-markdown";
+import _ from 'lodash';
 import {Prism as SyntaxHighlighter} from "react-syntax-highlighter"
 import {coy} from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Link } from 'react-router-dom';
@@ -8,6 +9,11 @@ import styled from 'styled-components';
 import MathJax from "@matejmazur/react-mathjax";
 import RemarkMathPlugin from "remark-math";
 import ArticleModel from "../models/article.model";
+import TagGroup from './tag-group.component';
+
+const TitleGroupContainer = styled.div`
+  margin-bottom: 16px;
+`;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -16,6 +22,7 @@ const TitleContainer = styled.div`
 
 const Title = styled.h1`
   font-size: 28px;
+  margin-bottom: 0;
 `;
 
 const PublishedDate = styled.div`
@@ -24,12 +31,17 @@ const PublishedDate = styled.div`
 `;
 
 const ArticleContainer = styled.div`
-  max-width: 850px;
+  max-width: 620px;
   margin: 0 auto;
   p {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 1.6;
   }
 `;
+
+const TagContainer = styled.div`
+  display: flex;
+`
 
 interface ArticleComponentProps {
   article: ArticleModel
@@ -66,22 +78,27 @@ const Article = ({ article }: ArticleComponentProps) => {
     }
   }, [article.url]);
 
-  return content
+  return !_.isNil(content)
     ? (
       <ArticleContainer>
-        <Link to={article.path}>
+        <TitleGroupContainer>
           <TitleContainer>
-            <Title>{article.title}</Title>
+            <Link to={article.path}>
+              <Title>{article.title}</Title>
+            </Link>
             <PublishedDate>{article.getPublishedDate()}</PublishedDate>
           </TitleContainer>
-        </Link>
+          <TagContainer>
+            <TagGroup tags={article.tags} />
+          </TagContainer>
+        </TitleGroupContainer>
         <MathJax.Context input="tex">
-            <ReactMarkdown
-              plugins={plugins}
-              renderers={renderers}
-            >
-              {content}
-            </ReactMarkdown>
+          <ReactMarkdown
+            plugins={plugins}
+            renderers={renderers}
+          >
+            {content}
+          </ReactMarkdown>
         </MathJax.Context>
       </ArticleContainer>
     ) : <p>Article not found</p>;

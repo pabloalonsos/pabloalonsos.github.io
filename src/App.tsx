@@ -20,7 +20,7 @@ const AppWrapper = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   
   main {
@@ -40,6 +40,9 @@ function App() {
               <About />
             </Route>
             <Route path="/posts/:slug">
+              <Post />
+            </Route>
+            <Route path="/drafts/:slug">
               <Post />
             </Route>
             <Route path="/contact">

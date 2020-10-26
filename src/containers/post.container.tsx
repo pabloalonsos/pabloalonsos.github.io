@@ -10,15 +10,16 @@ import {Spin} from "antd";
 function Post() {
   const { slug } = useParams();
   const [articleSummary, setArticleSummary] = useState<ArticleModel>();
+  const articleType = process.env.REACT_APP_ARTICLE_TYPE === 'post' ? 'posts' : 'drafts';
 
   useEffect(() => {
-    fetch(`${process.env.PUBLIC_URL}/posts/list.json5`)
+    fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
       .then(data => data.text())
       .then(data => JSON5.parse(data))
       .then(data => data[slug])
       .then(data => new ArticleModel(data))
       .then(post => { setArticleSummary(post) })
-  }, [slug]);
+  }, [slug, articleType]);
 
   return articleSummary ? (
     <Article article={articleSummary} />
