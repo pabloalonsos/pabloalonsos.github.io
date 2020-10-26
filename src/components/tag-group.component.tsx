@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from "lodash";
-import {Tag} from "antd";
+import { Tag } from "antd";
 
 interface TagGroupProps {
   tags: string[];

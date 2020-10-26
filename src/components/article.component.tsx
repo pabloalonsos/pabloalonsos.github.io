@@ -18,10 +18,11 @@ const TitleGroupContainer = styled.div`
 const TitleContainer = styled.div`
   display: flex;
   align-items: baseline;
+  margin-bottom: 8px;
 `;
 
 const Title = styled.h1`
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 0;
 `;
 
@@ -41,6 +42,7 @@ const ArticleContainer = styled.div`
 
 const TagContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `
 
 interface ArticleComponentProps {
