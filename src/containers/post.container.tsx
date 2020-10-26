@@ -4,8 +4,7 @@ import JSON5 from "json5";
 
 import Article from "../components/article.component";
 import ArticleModel from "../models/article.model";
-import {Spin} from "antd";
-
+import Spinner from "../components/spinner.component";
 
 function Post() {
   const { slug } = useParams();
@@ -23,7 +22,7 @@ function Post() {
 
   return articleSummary ? (
     <Article article={articleSummary} />
-  ): <Spin size="large" />;
+  ): <Spinner size="large" />;
 }
 
 export default Post;

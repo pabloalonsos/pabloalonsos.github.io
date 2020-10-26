@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import {Divider} from "antd";
+import { Divider } from "antd";
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -12,12 +12,14 @@ const StyledFooter = styled.footer`
 
 function Footer() {
   return (
-    <StyledFooter>
+    <div>
       <Divider/>
-      <p>Follow Site.org posts: <a href="https://twitter.com/site-org" target="_blank" rel="noopener noreferrer">Twitter</a>, <Link to="/rss">RSS feed</Link>.</p>
-      <p>Follow <a href="https://twitter.com/pabloalonsos" target="_blank" rel="noopener noreferrer">@pabloalonsos</a> on Twitter if you’d like.</p>
-      <p>© 2020 Pablo Alonso Subiñas</p>
-    </StyledFooter>
+      <StyledFooter>
+        <p>Follow Site.org posts: <a href="https://twitter.com/site-org" target="_blank" rel="noopener noreferrer">Twitter</a>, <Link to="/rss">RSS feed</Link>.</p>
+        <p>Follow <a href="https://twitter.com/pabloalonsos" target="_blank" rel="noopener noreferrer">@pabloalonsos</a> on Twitter if you’d like.</p>
+        <p>© 2020 Pablo Alonso Subiñas</p>
+      </StyledFooter>
+    </div>
   );
 }
 
