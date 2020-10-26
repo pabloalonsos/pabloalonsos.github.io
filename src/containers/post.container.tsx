@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import { useParams } from "react-router";
-import _ from "lodash";
 import JSON5 from "json5";
 
 import Article from "../components/article.component";

@@ -9,6 +9,27 @@ import MathJax from "@matejmazur/react-mathjax";
 import RemarkMathPlugin from "remark-math";
 import ArticleModel from "../models/article.model";
 
+const TitleContainer = styled.div`
+  display: flex;
+  align-items: baseline;
+`;
+
+const Title = styled.h1`
+  font-size: 28px;
+`;
+
+const PublishedDate = styled.div`
+  margin-left: 8px;
+  color: grey;
+`;
+
+const ArticleContainer = styled.div`
+  max-width: 850px;
+  margin: 0 auto;
+  p {
+    font-size: 16px;
+  }
+`;
 
 interface ArticleComponentProps {
   article: ArticleModel
@@ -31,22 +52,8 @@ const renderers = {
   code: ({language, value}: CodeRenderer ) =>
     <SyntaxHighlighter style={coy} language={language} children={value} />,
   math: ({ value }: GenericRenderer) => <MathJax.Node>{value}</MathJax.Node>,
-  inlineMath: ({ value }: GenericRenderer) => <MathJax.Node inline>{value}</MathJax.Node>
+  inlineMath: ({ value }: GenericRenderer) => <MathJax.Node inline>blah{value}</MathJax.Node>
 };
-
-const TitleContainer = styled.div`
-  display: flex;
-  align-items: baseline;
-`;
-
-const Title = styled.h1`
-  font-size: 28px;
-`;
-
-const PublishedDate = styled.div`
-  margin-left: 8px;
-  color: grey;
-`;
 
 const Article = ({ article }: ArticleComponentProps) => {
   let [ content, setContent ] = useState(null);
@@ -61,7 +68,7 @@ const Article = ({ article }: ArticleComponentProps) => {
 
   return content
     ? (
-      <>
+      <ArticleContainer>
         <Link to={article.path}>
           <TitleContainer>
             <Title>{article.title}</Title>
@@ -76,7 +83,7 @@ const Article = ({ article }: ArticleComponentProps) => {
               {content}
             </ReactMarkdown>
         </MathJax.Context>
-      </>
+      </ArticleContainer>
     ) : <p>Article not found</p>;
 }
 

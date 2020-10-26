@@ -18,7 +18,6 @@ function HomeFeed () {
         .then((posts: ArticleModel[]) => { setArticles(posts) })
   }, []);
 
-  console.log(articles)
   return (
     <>
       {
