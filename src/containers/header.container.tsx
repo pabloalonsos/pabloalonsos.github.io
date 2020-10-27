@@ -7,6 +7,13 @@ const HeaderContainer = styled.header`
   .title {
     font-size: 28px;
   }
+  .ant-page-header-heading {
+    align-items: baseline;
+  }
+  .ant-page-header-heading-left {
+    flex-direction: column;
+    align-items: initial;
+  }
 `
 
 export default function Header() {
@@ -14,7 +21,7 @@ export default function Header() {
     <HeaderContainer>
       <PageHeader
         title={<Link to="/"><span className="title" title="Site.org">Site.org</span></Link>}
-        subTitle="Writing about life, the universe and everything else."
+        subTitle={<div>Caminante no hay camino, se hace camino al andar.</div>}
         extra={[
           <Button key="4"><Link to="/index">Index</Link></Button>,
           <Button key="3"><Link to="/rss">RSS</Link></Button>,

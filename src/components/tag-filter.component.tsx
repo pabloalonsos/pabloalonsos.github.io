@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 
@@ -8,7 +8,6 @@ import {useHistory, useLocation} from "react-router";
 interface TagFilterProps {
   tags: object;
 }
-
 
 const TagFilterList = styled.ul`
   min-width: 400px;
@@ -31,27 +30,31 @@ const Clickable = styled.span`
   color: #1890ff;
 `;
 
+function tagExtractor(query: string) {
+  const queryPairs = _.split(_.drop(query, 1).join(''), '&')
+  return _(queryPairs)
+    .map(queryPair => _(queryPair).split('=').without('tag').compact().value())
+    .flatten()
+    .value()
+}
+
 const TagFilter = ({ tags }: TagFilterProps) => {
   const { pathname, search: query }= useLocation();
   const history = useHistory();
-  const [ selectedTags, setSelectedTags ] = useState(
-    _(_.drop(query, 1).join(''))
-      .split('=')
-      .without('tag')
-      .compact()
-      .value()
-  );
+  const [ selectedTags, setSelectedTags ] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSelectedTags(tagExtractor(query));
+  }, [query]);
 
   function onSelectTag(tag: string) {
     const newSelectedTags = _.includes(selectedTags, tag)
       ? _.without(selectedTags, tag)
       : [...selectedTags, tag];
-    setSelectedTags(newSelectedTags);
     history.replace(`${pathname}?${_.map(newSelectedTags, (sTag) => `tag=${sTag}`).join('&')}`);
   }
 
   function onClearAllTags() {
-    setSelectedTags([])
     history.replace(pathname);
   }
 
