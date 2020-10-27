@@ -17,7 +17,7 @@ export default function TagGroup({ tags }: TagGroupProps) {
     <>
       {
         _.map(tags, (tag) => (
-          <Link to={`/index?tag=${tag}`}>
+          <Link to={`/archive?tag=${tag}`}>
             <ClickableTag key={tag}>{tag}</ClickableTag>
           </Link>
         ))

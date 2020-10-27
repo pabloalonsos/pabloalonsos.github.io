@@ -11,9 +11,8 @@ import Header from './containers/header.container';
 import Footer from './containers/footer.container';
 import About from "./containers/about.container";
 import Post from "./containers/post.container";
-import Contact from "./containers/contact.container";
 import HomeFeed from "./containers/home-feed.container";
-import PostIndex from "./containers/post-index.container";
+import PostIndex from "./containers/post-archive.container";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -45,10 +44,7 @@ function App() {
             <Route path="/drafts/:slug">
               <Post />
             </Route>
-            <Route path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/index">
+            <Route path="/archive">
               <PostIndex />
             </Route>
             <Route path="/" exact>

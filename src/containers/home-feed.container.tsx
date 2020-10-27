@@ -42,7 +42,7 @@ function HomeFeed () {
         }).value()
       }
       <ArchiveLink>
-        <span>For more articles <Link to="/index">check out The Archive<span role="img" aria-label="tm">™</span>️</Link></span>
+        <span>For more articles <Link to="/archive">check out The Archive<span role="img" aria-label="tm">™</span>️</Link></span>
       </ArchiveLink>
     </>
   );

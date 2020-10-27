@@ -23,10 +23,9 @@ export default function Header() {
         title={<Link to="/"><span className="title" title="Site.org">Site.org</span></Link>}
         subTitle={<div>Caminante no hay camino, se hace camino al andar.</div>}
         extra={[
-          <Button key="4"><Link to="/index">Index</Link></Button>,
-          <Button key="3"><Link to="/rss">RSS</Link></Button>,
-          <Button key="2"><Link to="/about">About</Link></Button>,
-          <Button key="1"><Link to="/contact">Contact</Link></Button>,
+          <Button key="3"><Link to="/archive">Archive</Link></Button>,
+          <Button key="2"><Link to="/rss">RSS</Link></Button>,
+          <Button key="1"><Link to="/about">About</Link></Button>,
         ]}
       />
     </HeaderContainer>

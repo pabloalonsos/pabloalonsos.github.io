@@ -49,11 +49,11 @@ const MonthGroup = styled.div`
   margin-bottom: 14px;
 `;
 
-const IndexContent = styled.div`
+const ArchiveContent = styled.div`
   display: flex;
 `;
 
-function PostIndex () {
+function PostArchive () {
   const [articles, setArticles] = useState<ArticleModel[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const query = useLocation().search;
@@ -91,7 +91,7 @@ function PostIndex () {
   return (
     <>
       <ArchivesHeader>
-        <h1>Archives</h1>
+        <h1>Archive</h1>
         <Input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -102,42 +102,44 @@ function PostIndex () {
           bordered={false}
         />
       </ArchivesHeader>
-      <IndexContent>
+      <ArchiveContent>
         <ArticlesContainer>
           {
-            _(organizedArticles).map((yearlyArticles, year) => (
-              <YearGroup key={year}>
-                <h2>{year}</h2>
-                {
-                  _(yearlyArticles).map((monthlyArticles, month) => (
-                    <MonthGroup key={month}>
-                      <h3>{month}</h3>
-                      {
-                        _.map(monthlyArticles, article => {
-                          return (
-                            <ArticleLink key={article.path}>
-                              <StyledLink to={article.path}>
-                                {article.title}
-                              </StyledLink>
-                              <div>
-                                <span>{article.getPublishedDate()}</span>
-                                {article.tags && <span> -- <TagGroup tags={article.tags} /></span>}
-                              </div>
-                            </ArticleLink>
-                          )
-                        })
-                      }
-                    </MonthGroup>
-                  )).reverse().value()
-                }
-              </YearGroup>
-            )).reverse().value()
+            !_.isEmpty(organizedArticles) ?
+              _(organizedArticles).map((yearlyArticles, year) => (
+                <YearGroup key={year}>
+                  <h2>{year}</h2>
+                  {
+                    _(yearlyArticles).map((monthlyArticles, month) => (
+                      <MonthGroup key={month}>
+                        <h3>{month}</h3>
+                        {
+                          _.map(monthlyArticles, article => {
+                            return (
+                              <ArticleLink key={article.path}>
+                                <StyledLink to={article.path}>
+                                  {article.title}
+                                </StyledLink>
+                                <div>
+                                  <span>{article.getPublishedDate()}</span>
+                                  {article.tags && <span> -- <TagGroup tags={article.tags} /></span>}
+                                </div>
+                              </ArticleLink>
+                            )
+                          })
+                        }
+                      </MonthGroup>
+                    )).reverse().value()
+                  }
+                </YearGroup>
+              )).reverse().value()
+              : <h4>Please clear your search</h4>
           }
         </ArticlesContainer>
         <TagFilter tags={tags} />
-      </IndexContent>
+      </ArchiveContent>
     </>
   );
 }
 
-export default PostIndex;
+export default PostArchive;
