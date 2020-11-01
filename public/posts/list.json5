@@ -1,8 +1,9 @@
 {
-  "2020-9-25-18-first_article.md": {
-    "title": "First Article",
-    "slug": "2020-9-25-18-first_article",
+  "2020-9-25-18-there_and_back_again.md": {
+    "title": "There and Back Again",
+    "slug": "2020-9-25-18-there_and_back_again",
     "publishedDate": "2020-10-25T22:55:23.069Z",
-    "createdDate": "Sun Oct 25 2020 18:53:07 GMT-0400 (Eastern Daylight Time)"
+    "createdDate": "Sun Oct 25 2020 18:53:07 GMT-0400 (Eastern Daylight Time)",
+    "tags": ["literature"]
   }
 }

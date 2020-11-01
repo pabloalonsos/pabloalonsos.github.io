@@ -27,6 +27,8 @@ fn main() {
  
 There is also inline $x^2x$ equations
 
+<iframe src="https://lichess.org/study/embed/r3IVAdFP/8Wch2WZu#0" width="600" height="371" frameborder="0"></iframe>
+
 <chess draggable="false">
 [Event "F/S Return Match"]
 [Site "Belgrade, Serbia JUG"]

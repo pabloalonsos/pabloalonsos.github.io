@@ -31,6 +31,7 @@ interface ChessProps {
   children: React.ComponentElement<any, any>,
   draggable: 'true'|'false',
   hideControls?: 'true'|'false'
+  hideMoves?: 'true'|'false'
 }
 
 function fromArrayToPGN(moves: string[]): string {
@@ -43,7 +44,7 @@ function fromArrayToPGN(moves: string[]): string {
   }, '');
 }
 
-const Chess = ({ children, draggable, hideControls }: ChessProps) => {
+const Chess = ({ children, draggable, hideControls, hideMoves }: ChessProps) => {
   const id = useMemo(() => genRandStr(), []);
 
   const [isInitialized, setInitialize] = useState(false);
@@ -96,6 +97,7 @@ const Chess = ({ children, draggable, hideControls }: ChessProps) => {
   }, [movesRef]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const shouldHideControls: boolean = hideControls === 'true';
+  const shouldHideMoves: boolean = hideMoves === 'true';
 
   // @ts-ignore
   return (
@@ -138,11 +140,15 @@ const Chess = ({ children, draggable, hideControls }: ChessProps) => {
           </div>
         ) : null
       }
-      <ChessboardMoves
-        moves={moves}
-        selectedMove={selectedMove}
-        onSelectMove={setSelectedMove}
-      />
+      {
+        !shouldHideMoves ? (
+          <ChessboardMoves
+            moves={moves}
+            selectedMove={selectedMove}
+            onSelectMove={setSelectedMove}
+          />
+        ) : null
+      }
     </ChessboardContainer>
   );
 }
