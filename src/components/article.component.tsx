@@ -63,6 +63,8 @@ const ArticleContainer = styled.div`
   hr {
     margin-bottom: 32px;
   }
+  
+  .math-display { font-size: 1.3em; }
 `;
 
 const TagContainer = styled.div`

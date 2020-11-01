@@ -4,6 +4,9 @@ import _ from 'lodash';
 import Chessboard from 'chessboardjsx';
 import ChessJS from 'chess.js';
 import styled from "styled-components";
+import { Button } from 'antd';
+
+import { VerticalLeftOutlined, VerticalRightOutlined, LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 import ChessboardHeaders, { ChessboardHeadersType } from './chessboard-headers.component';
 import ChessboardMoves from './chessboard-moves.component';
@@ -20,9 +23,14 @@ const HiddenBoardData = styled.span`
   display: none;
 `;
 
+const ControlBtn = styled(Button)`
+  padding-top: 6px;
+`;
+
 interface ChessProps {
   children: React.ComponentElement<any, any>,
-  draggable: 'true'|'false'
+  draggable: 'true'|'false',
+  hideControls?: 'true'|'false'
 }
 
 function fromArrayToPGN(moves: string[]): string {
@@ -35,7 +43,7 @@ function fromArrayToPGN(moves: string[]): string {
   }, '');
 }
 
-const Chess = (props: ChessProps) => {
+const Chess = ({ children, draggable, hideControls }: ChessProps) => {
   const id = useMemo(() => genRandStr(), []);
 
   const [isInitialized, setInitialize] = useState(false);
@@ -87,11 +95,12 @@ const Chess = (props: ChessProps) => {
     setSelectedMove(board.history().length - 1);
   }, [movesRef]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const draggable: boolean = props.draggable === 'true';
+  const shouldHideControls: boolean = hideControls === 'true';
 
+  // @ts-ignore
   return (
     <ChessboardContainer>
-      <HiddenBoardData ref={movesRef}>{props.children}</HiddenBoardData>
+      <HiddenBoardData ref={movesRef}>{children}</HiddenBoardData>
       <ChessboardHeaders
         white={headers.white}
         black={headers.black}
@@ -104,13 +113,31 @@ const Chess = (props: ChessProps) => {
       <Chessboard
         id={id}
         position={board.fen()}
-        draggable={draggable}
+        draggable={draggable === 'true'}
         calcWidth={({ screenWidth }) => {
           return (screenWidth < 620)
             ? screenWidth - 50
             : 420;
         }}
       />
+      {
+        !shouldHideControls && !_.isUndefined(selectedMove) ? (
+          <div style={{ display: 'flex', marginTop: 8 }}>
+            <ControlBtn onClick={() => { setSelectedMove(0)}} disabled={selectedMove-1 < 0}>
+              <VerticalRightOutlined />
+            </ControlBtn>
+            <ControlBtn onClick={() => { setSelectedMove(selectedMove-1)}} disabled={selectedMove-1 < 0}>
+              <LeftOutlined />
+            </ControlBtn>
+            <ControlBtn onClick={() => { setSelectedMove(selectedMove+1)}} disabled={selectedMove === moves.length-1}>
+              <RightOutlined />
+            </ControlBtn>
+            <ControlBtn onClick={() => { setSelectedMove(moves.length-1)}} disabled={selectedMove === moves.length-1}>
+              <VerticalLeftOutlined/>
+            </ControlBtn>
+          </div>
+        ) : null
+      }
       <ChessboardMoves
         moves={moves}
         selectedMove={selectedMove}

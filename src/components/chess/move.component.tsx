@@ -56,6 +56,10 @@ export default styled(Move)`
   display: flex;
   cursor: pointer;
   
+  &:focus {
+    outline: none;
+  }
+  
   ${({ isSelected }: { isSelected: boolean }) => isSelected && css`
     font-weight: 600;
   `}
