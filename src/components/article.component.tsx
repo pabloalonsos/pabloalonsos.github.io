@@ -59,6 +59,10 @@ const ArticleContainer = styled.div`
     font-size: 16px;
     margin-bottom: 20px;
   }
+  
+  hr {
+    margin-bottom: 32px;
+  }
 `;
 
 const TagContainer = styled.div`

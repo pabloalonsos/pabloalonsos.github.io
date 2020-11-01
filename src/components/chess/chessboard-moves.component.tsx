@@ -17,8 +17,6 @@ const MovesContainer = styled.div`
   margin-bottom: 16px;
   line-height: 2;
   font-size: 18px;
-  
-  border-bottom: 1px solid lightgrey;
 `;
 
 const ChessboardMoves = ({ moves, selectedMove, onSelectMove }: ChessboardMovesProps) => {
@@ -60,7 +58,7 @@ const ChessboardMoves = ({ moves, selectedMove, onSelectMove }: ChessboardMovesP
       </div>
     )];
   }, []);
-  
+
   return (
     <MovesContainer>
       {movesArr}

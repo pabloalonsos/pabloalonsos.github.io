@@ -97,6 +97,9 @@ const Chess = (props: ChessProps) => {
         black={headers.black}
         whiteElo={headers.whiteElo}
         blackElo={headers.blackElo}
+        event={headers.event}
+        site={headers.site}
+        date={headers.date}
       />
       <Chessboard
         id={id}
