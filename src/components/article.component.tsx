@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import ArticleModel from "../models/article.model";
 import TagGroup from './tag-group.component';
 import Spinner from "./spinner.component";
+import Chess from './chess/chess.component';
 
 import 'katex/dist/katex.min.css';
 
@@ -14,6 +15,7 @@ import katex from 'rehype-katex';
 import remark2rehype from "remark-rehype";
 import rehype2react from 'rehype-react';
 import math from 'remark-math';
+import raw from 'rehype-raw';
 // @ts-ignore
 import prism from '@mapbox/rehype-prism';
 
@@ -69,13 +71,18 @@ interface ArticleComponentProps {
 }
 
 const processor = unified()
-  .use(remark2rehype)
   .use(markdown)
+  .use(remark2rehype, { allowDangerousHtml: true })
+  .use(raw)
   .use(prism)
   .use(math)
   .use(katex)
   .use(rehype2react, {
     createElement: React.createElement,
+    components: {
+      // @ts-ignore
+      chess: Chess
+    }
   });
 
 const Article = ({ article }: ArticleComponentProps) => {

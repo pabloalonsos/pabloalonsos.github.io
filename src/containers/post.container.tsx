@@ -7,7 +7,7 @@ import ArticleModel from "../models/article.model";
 import Spinner from "../components/spinner.component";
 
 function Post() {
-  const { slug } = useParams();
+  const { slug } = useParams<{slug: string}>();
   const [articleSummary, setArticleSummary] = useState<ArticleModel>();
   const articleType = process.env.REACT_APP_ARTICLE_TYPE === 'post' ? 'posts' : 'drafts';
 
