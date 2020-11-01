@@ -1,16 +1,25 @@
-import React, {useEffect, useState} from 'react';
-import ReactMarkdown from "react-markdown";
+import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
-import {Prism as SyntaxHighlighter} from "react-syntax-highlighter"
-import {coy} from "react-syntax-highlighter/dist/esm/styles/prism"
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// @ts-ignore
-import MathJax from "@matejmazur/react-mathjax";
-import RemarkMathPlugin from "remark-math";
 import ArticleModel from "../models/article.model";
 import TagGroup from './tag-group.component';
 import Spinner from "./spinner.component";
+import Chess from './chess/chess.component';
+
+import 'katex/dist/katex.min.css';
+
+import unified from "unified";
+import markdown from "remark-parse";
+import katex from 'rehype-katex';
+import remark2rehype from "remark-rehype";
+import rehype2react from 'rehype-react';
+import math from 'remark-math';
+import raw from 'rehype-raw';
+// @ts-ignore
+import prism from '@mapbox/rehype-prism';
+
+import 'prism-themes/themes/prism-material-light.css';
 
 const TitleGroupContainer = styled.div`
   margin: 16px 0 32px 0;
@@ -44,6 +53,16 @@ const ArticleContainer = styled.div`
   p a {
     text-decoration: underline;
   }
+  
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  hr {
+    margin-bottom: 32px;
+  }
 `;
 
 const TagContainer = styled.div`
@@ -55,28 +74,23 @@ interface ArticleComponentProps {
   article: ArticleModel
 }
 
-interface CodeRenderer {
-  language: string,
-  value: React.FC
-}
-
-interface GenericRenderer {
-  value: string
-}
-
-const plugins = [
-  RemarkMathPlugin
-];
-
-const renderers = {
-  code: ({language, value}: CodeRenderer ) =>
-    <SyntaxHighlighter style={coy} language={language} children={value} />,
-  math: ({ value }: GenericRenderer) => <MathJax.Node>{value}</MathJax.Node>,
-  inlineMath: ({ value }: GenericRenderer) => <MathJax.Node inline>blah{value}</MathJax.Node>
-};
+const processor = unified()
+  .use(markdown)
+  .use(remark2rehype, { allowDangerousHtml: true })
+  .use(raw)
+  .use(prism)
+  .use(math)
+  .use(katex)
+  .use(rehype2react, {
+    createElement: React.createElement,
+    components: {
+      // @ts-ignore
+      chess: Chess
+    }
+  });
 
 const Article = ({ article }: ArticleComponentProps) => {
-  let [ content, setContent ] = useState(null);
+  let [ content, setContent ] = useState('');
 
   useEffect(() => {
     if (article.url) {
@@ -86,7 +100,7 @@ const Article = ({ article }: ArticleComponentProps) => {
     }
   }, [article.url]);
 
-  return !_.isNil(content)
+  return !_.isEmpty(content)
     ? (
       <ArticleContainer>
         <TitleGroupContainer>
@@ -100,14 +114,7 @@ const Article = ({ article }: ArticleComponentProps) => {
             <TagGroup tags={article.tags} />
           </TagContainer>
         </TitleGroupContainer>
-        <MathJax.Context input="tex">
-          <ReactMarkdown
-            plugins={plugins}
-            renderers={renderers}
-          >
-            {content}
-          </ReactMarkdown>
-        </MathJax.Context>
+        {processor.processSync(content).result}
       </ArticleContainer>
     ) : <Spinner size="large" />
 }
