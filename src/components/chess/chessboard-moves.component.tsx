@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import _ from 'lodash';
 import styled from "styled-components";
 import Move from './move.component';
@@ -38,26 +38,28 @@ const ChessboardMoves = ({ moves, selectedMove, onSelectMove }: ChessboardMovesP
     }
   };
 
-  const movesArr = _.reduce(moves, (acc: JSX.Element[], move, idx) => {
-    return [...acc, (
-      <div key={idx} style={{ display: 'flex' }}>
-        { ((idx+1) % 2 ) ? <span>{(idx+2)/2}. </span> : null }
-        <Move
-          key={idx}
-          isSelected={selectedMove === idx}
-          onClick={() => onSelectMove(idx)}
-          onKeyDown={(e) => onKeyDown(e, idx)}
-        >
-          {move}
-        </Move>
-        {
-          !((idx+1) % 2 )  && (idx+1) !== moves.length
-            ? <span style={{ margin: '0 10px 0 8px'}}> - </span>
-            : null
-        }
-      </div>
-    )];
-  }, []);
+  const movesArr = useMemo(() => {
+    return _.reduce(moves, (acc: JSX.Element[], move, idx) => {
+      return [...acc, (
+        <div key={idx} style={{ display: 'flex' }}>
+          { ((idx+1) % 2 ) ? <span>{(idx+2)/2}. </span> : null }
+          <Move
+            key={idx}
+            isSelected={selectedMove === idx}
+            onClick={() => onSelectMove(idx)}
+            onKeyDown={(e) => onKeyDown(e, idx)}
+          >
+            {move}
+          </Move>
+          {
+            !((idx+1) % 2 )  && (idx+1) !== moves.length
+              ? <span style={{ margin: '0 10px 0 8px'}}> - </span>
+              : null
+          }
+        </div>
+      )];
+    }, []);
+  }, [moves, selectedMove]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <MovesContainer>
