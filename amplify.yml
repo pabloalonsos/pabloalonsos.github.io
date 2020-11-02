@@ -15,6 +15,12 @@ frontend:
     baseDirectory: build
     files:
       - '**/*'
+      - 'posts/**/*'
+      - 'posts/list.json5'
+      - 'media/*'
+      - 'media/**/*'
+      - 'static/*'
+      - 'static/**/*'
   cache:
     paths:
       - node_modules/**/*
