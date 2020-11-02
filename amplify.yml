@@ -3,12 +3,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm ls
+        - nvm install $NODE_VER
         - nvm use $NODE_VER
         - yarn install
     build:
       commands:
-        - nvm ls
+        - nvm install $NODE_VER
         - nvm use $NODE_VER
         - yarn run build
   artifacts:
