@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm ls
+        - nvm use $NODE_VER
         - yarn install
     build:
       commands:
