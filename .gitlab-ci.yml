@@ -6,15 +6,31 @@ cache:
     - .yarn
 
 stages:
-    - build
+  - build
+  - deploy
+
 build:
-    stage: build
-    script:
-        - echo "Building deploy package"
-        - yarn install
-        - yarn build
-        - echo "Build successful"
-    artifacts:
-        expire_in: 1 hour
-        paths:
-            - build
+  stage: build
+  script:
+    - echo "Building..."
+    - yarn install
+    - yarn build
+    - echo "Build successful"
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - build
+
+pages:
+  stage: deploy
+  script:
+    - echo "Deploying..."
+    - yarn install
+    - yarn build
+    - echo "Build Done. Configuring..."
+  artifacts:
+    paths:
+      - build
+      - public
+    only:
+      - master
