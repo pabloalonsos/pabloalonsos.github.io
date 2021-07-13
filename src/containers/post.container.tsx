@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import JSON5 from "json5";
 
 import Article from "../components/article.component";
-import ArticleModel from "../models/article.model";
+import ArticleModel, { ArticleModelCreator } from "../models/article.model";
 import Spinner from "../components/spinner.component";
 
 function Post() {
@@ -14,7 +14,7 @@ function Post() {
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
       .then(data => data.text())
-      .then(data => JSON5.parse(data))
+      .then(data => JSON5.parse(data) as { [key: string]: ArticleModelCreator })
       .then(data => data[slug])
       .then(data => new ArticleModel(data))
       .then(post => { setArticleSummary(post) })

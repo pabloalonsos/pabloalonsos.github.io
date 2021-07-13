@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
-import ArticleModel from "../models/article.model";
+import ArticleModel, { ArticleModelCreator } from "../models/article.model";
 import TagFilter from '../components/tag-filter.component';
 import TagGroup from "../components/tag-group.component";
 
@@ -67,7 +67,7 @@ function PostArchive () {
   useEffect(() => {
     fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
       .then(data => data.text())
-      .then(data => JSON5.parse(data))
+      .then(data => JSON5.parse(data) as [ArticleModelCreator])
       .then(data => _.map(data, (post) => new ArticleModel(post)))
       .then((posts: ArticleModel[]) => { setArticles(posts) })
   }, [articleType]);

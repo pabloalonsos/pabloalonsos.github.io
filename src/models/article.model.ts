@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-interface ArticleModelCreator {
+export interface ArticleModelCreator {
   title: string;
   slug: string;
   publishedDate: Date;

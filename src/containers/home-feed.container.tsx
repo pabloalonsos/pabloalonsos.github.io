@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Article from "../components/article.component";
-import ArticleModel from "../models/article.model";
+import ArticleModel, { ArticleModelCreator } from "../models/article.model";
 import { Divider } from "antd";
 import 'antd/dist/antd.css';
 
@@ -22,11 +22,11 @@ function HomeFeed () {
   const articleType = process.env.REACT_APP_ARTICLE_TYPE === 'post' ? 'posts' : 'drafts';
 
   useEffect(() => {
-      fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
-        .then(data => data.text())
-        .then(data => JSON5.parse(data))
-        .then(data => _.map(data, (post) => new ArticleModel(post)))
-        .then((posts: ArticleModel[]) => { setArticles(posts) })
+    fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
+      .then(data => data.text())
+      .then(data => JSON5.parse(data) as [ArticleModelCreator])
+      .then(data => _.map(data, (post) => new ArticleModel(post)))
+      .then((posts: ArticleModel[]) => { setArticles(posts) })
   }, [articleType]);
 
   return (
