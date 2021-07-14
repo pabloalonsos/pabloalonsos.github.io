@@ -13,7 +13,7 @@ build:
   stage: build
   script:
     - echo "Building..."
-    - yarn install
+    - yarn
     - yarn build
     - echo "Build successful"
   artifacts:
@@ -25,6 +25,7 @@ pages:
   stage: deploy
   script:
     - echo "Deploying..."
+    - yarn
     - yarn deploy
     - echo "Deployment Completed..."
   only:
