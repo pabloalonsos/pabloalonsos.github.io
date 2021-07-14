@@ -25,12 +25,7 @@ pages:
   stage: deploy
   script:
     - echo "Deploying..."
-    - yarn install
-    - yarn build
-    - echo "Build Done. Configuring..."
-  artifacts:
-    paths:
-      - build
-      - public
-    only:
-      - master
+    - yarn deploy
+    - echo "Deployment Completed..."
+  only:
+    - master

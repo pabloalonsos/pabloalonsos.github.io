@@ -55,7 +55,7 @@
     "start:post": "REACT_APP_ARTICLE_TYPE=post react-scripts start",
     "build": "REACT_APP_ARTICLE_TYPE=post react-scripts build && rm -rf build/drafts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b docs -d build",
+    "deploy": "gh-pages -b main -r https://github.com/pabloalonsos/pabloalonsos.github.io -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
