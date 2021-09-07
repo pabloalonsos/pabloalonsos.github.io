@@ -11,7 +11,7 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
     font-family: "Avenir Next";
   }
-  
+
   #root {
     height: 100%;
     width: 100%;

@@ -32,7 +32,7 @@ function HomeFeed () {
   return (
     <>
       {
-        _(articles).sortBy('publishedDate').take(10).map((article, idx) => {
+        _(articles).sortBy('publishedDate').takeRight(10).reverse().map((article, idx) => {
           return (
             <section key={article.slug}>
               <Article article={article} />

@@ -29,8 +29,8 @@ const ControlBtn = styled(Button)`
 
 interface ChessProps {
   children: React.ComponentElement<any, any>,
-  draggable: 'true'|'false',
-  hideControls?: 'true'|'false'
+    draggable: 'true'|'false',
+    hideControls?: 'true'|'false'
   hideMoves?: 'true'|'false'
 }
 
@@ -140,17 +140,17 @@ const Chess = ({ children, draggable, hideControls, hideMoves }: ChessProps) => 
           </div>
         ) : null
       }
-      {
-        !shouldHideMoves ? (
-          <ChessboardMoves
-            moves={moves}
-            selectedMove={selectedMove}
-            onSelectMove={setSelectedMove}
-          />
+    {
+      !shouldHideMoves ? (
+        <ChessboardMoves
+          moves={moves}
+          selectedMove={selectedMove}
+          onSelectMove={setSelectedMove}
+        />
         ) : null
-      }
-    </ChessboardContainer>
-  );
+    }
+  </ChessboardContainer>
+);
 }
 
 // @ts-ignore

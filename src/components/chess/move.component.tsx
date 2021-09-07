@@ -1,4 +1,4 @@
-import React, {useRef, useLayoutEffect } from "react";
+import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 import _ from 'lodash';
 // @ts-ignore
@@ -31,12 +31,13 @@ const Move = ({ className, isSelected, onClick, onKeyDown, children }: MoveProps
     ? constructEmojizedMove(children)
     : _.castArray(<div key="0">{children}</div>);
 
-  useLayoutEffect(() => {
-    if (isSelected) {
-      // @ts-ignore
-      ref.current?.focus();
-    }
-  }, [isSelected]);
+  // NOTE: Not sure why i was forcing focus in the past
+  //useLayoutEffect(() => {
+  //  if (isSelected) {
+  //    // @ts-ignore
+  //    ref.current?.focus();
+  //  }
+  //}, [isSelected]);
 
   return (
     <div

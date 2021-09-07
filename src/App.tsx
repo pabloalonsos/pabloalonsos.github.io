@@ -21,7 +21,7 @@ const AppWrapper = styled.div`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  
+
   main {
     flex: 1;
     margin: 0 25px;
