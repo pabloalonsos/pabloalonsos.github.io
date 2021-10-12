@@ -19,7 +19,8 @@ import raw from 'rehype-raw';
 // @ts-ignore
 import prism from '@mapbox/rehype-prism';
 
-import 'prism-themes/themes/prism-material-light.css';
+//import 'prism-themes/themes/prism-material-light.css';
+import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
 
 const TitleGroupContainer = styled.div`
   margin: 16px 0 32px 0;
@@ -42,7 +43,6 @@ const PublishedDate = styled.div`
 `;
 
 const ArticleContainer = styled.div`
-  max-width: 620px;
   margin: 0 auto;
 
   p {
@@ -97,8 +97,8 @@ const Article = ({ article }: ArticleComponentProps) => {
   useEffect(() => {
     if (article.url) {
       fetch(article.url)
-      .then(data => data.text())
-      .then(text => {setContent(text as any)});
+        .then(data => data.text())
+        .then(text => {setContent(text as any)});
     }
   }, [article.url]);
 

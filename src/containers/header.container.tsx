@@ -21,7 +21,8 @@ export default function Header() {
     <HeaderContainer>
       <PageHeader
         title={<Link to="/"><span className="title" title="Site.org">Pablo Alonso</span></Link>}
-        subTitle={<div>I'm <a href="https://twitter.com/pabloalonsos">Pablo Alonso</a>: programmer, geek, interested in space, physics and Brazilian Jiu Jitsu</div>}
+        subTitle={<div>I'm <a href="https://twitter.com/pabloalonsos">Pablo Alonso</a>, and I'm a Software Engineering Manager and learner of all things.</div>}
+
         extra={[
           <Button key="2"><Link to="/archive">Archive</Link></Button>,
           <Button key="1"><Link to="/about">About</Link></Button>,

@@ -24,7 +24,7 @@ fn main() {
     println!("List: {:s}", print_list(p.clone()));
 }
 ```
- 
+
 There is also inline $x^2x$ equations
 
 <iframe src="https://lichess.org/study/embed/r3IVAdFP/8Wch2WZu#0" width="600" height="371" frameborder="0"></iframe>

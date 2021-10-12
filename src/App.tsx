@@ -5,7 +5,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import 'antd/dist/antd.css';
 
 import Header from './containers/header.container';
 import Footer from './containers/footer.container';

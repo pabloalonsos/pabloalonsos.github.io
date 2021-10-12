@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import Article from "../components/article.component";
 import ArticleModel, { ArticleModelCreator } from "../models/article.model";
 import { Divider } from "antd";
-import 'antd/dist/antd.css';
 
 const ArchiveLink = styled.div`
   display: flex;
