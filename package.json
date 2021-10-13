@@ -55,7 +55,7 @@
     "start:post": "REACT_APP_ARTICLE_TYPE=post react-scripts start",
     "build": "REACT_APP_ARTICLE_TYPE=post react-scripts build && rm -rf build/drafts",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b main -r https://github.com/pabloalonsos/pabloalonsos.github.io -d build",
+    "deploy": "echo 'Deploying to Netlify...'",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -80,7 +80,6 @@
     "@types/react-router-dom": "^5.1.8",
     "@types/react-syntax-highlighter": "^13.5.2",
     "@types/styled-components": "^5.1.11",
-    "gh-pages": "^3.2.3",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2"
   }
