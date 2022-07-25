@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from 'react-router-dom';
 
@@ -33,23 +33,13 @@ function App() {
       <AppWrapper>
         <Header />
         <main>
-          <Switch>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/posts/:slug">
-              <Post />
-            </Route>
-            <Route path="/drafts/:slug">
-              <Post />
-            </Route>
-            <Route path="/archive">
-              <PostIndex />
-            </Route>
-            <Route path="/" exact>
-              <HomeFeed />
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/" element={<HomeFeed />}/>
+            <Route path="/about" element={<About />}/>
+            <Route path="/posts/:slug" element={<Post /> }/>
+            <Route path="/drafts/:slug" element={<Post />}/>
+            <Route path="/archive" element={<PostIndex />}/>
+          </Routes>
         </main>
         <Footer />
       </AppWrapper>

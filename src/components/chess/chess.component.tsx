@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, {useState, useEffect, useMemo, useRef, ReactElement} from "react";
 import _ from 'lodash';
 
 import Chessboard from 'chessboardjsx';
-import ChessJS from 'chess.js';
+import {Chess as ChessJS} from 'chess.js';
 import styled from "styled-components";
 import { Button } from 'antd';
 
@@ -29,8 +29,8 @@ const ControlBtn = styled(Button)`
 
 interface ChessProps {
   children: React.ComponentElement<any, any>,
-    draggable: 'true'|'false',
-    hideControls?: 'true'|'false'
+  draggable: 'true'|'false',
+  hideControls?: 'true'|'false'
   hideMoves?: 'true'|'false'
 }
 
@@ -44,7 +44,7 @@ function fromArrayToPGN(moves: string[]): string {
   }, '');
 }
 
-const Chess = ({ children, draggable, hideControls, hideMoves }: ChessProps) => {
+export default function Chess ({ children, draggable, hideControls, hideMoves }: ChessProps): ReactElement {
   const id = useMemo(() => genRandStr(), []);
 
   const [isInitialized, setInitialize] = useState(false);
@@ -140,18 +140,15 @@ const Chess = ({ children, draggable, hideControls, hideMoves }: ChessProps) => 
           </div>
         ) : null
       }
-    {
-      !shouldHideMoves ? (
-        <ChessboardMoves
-          moves={moves}
-          selectedMove={selectedMove}
-          onSelectMove={setSelectedMove}
-        />
+      {
+        !shouldHideMoves ? (
+          <ChessboardMoves
+            moves={moves}
+            selectedMove={selectedMove}
+            onSelectMove={setSelectedMove}
+          />
         ) : null
-    }
-  </ChessboardContainer>
-);
+      }
+    </ChessboardContainer>
+  );
 }
-
-// @ts-ignore
-export default Chess;

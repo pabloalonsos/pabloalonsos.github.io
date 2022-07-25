@@ -15,7 +15,8 @@ function Post() {
     fetch(`${process.env.PUBLIC_URL}/${articleType}/list.json5`)
       .then(data => data.text())
       .then(data => JSON5.parse(data) as { [key: string]: ArticleModelCreator })
-      .then(data => data[slug])
+      // TODO: Add better default error catching
+      .then(data => data[slug || ''])
       .then(data => new ArticleModel(data))
       .then(post => { setArticleSummary(post) })
   }, [slug, articleType]);

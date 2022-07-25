@@ -5,12 +5,12 @@ frontend:
       commands:
         - nvm install $NODE_VER
         - nvm use $NODE_VER
-        - yarn install
+        - npm ci
     build:
       commands:
         - nvm install $NODE_VER
         - nvm use $NODE_VER
-        - yarn run build
+        - npm run build
         - cp -r public/**/* build/
   artifacts:
     baseDirectory: build

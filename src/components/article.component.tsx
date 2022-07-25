@@ -9,9 +9,8 @@ import Chess from './chess/chess.component';
 
 import 'katex/dist/katex.min.css';
 
-import unified from "unified";
+import { unified } from "unified";
 import markdown from "remark-parse";
-import katex from 'rehype-katex';
 import remark2rehype from "remark-rehype";
 import rehype2react from 'rehype-react';
 import math from 'remark-math';
@@ -21,6 +20,7 @@ import prism from '@mapbox/rehype-prism';
 
 //import 'prism-themes/themes/prism-material-light.css';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
+import katex from 'rehype-katex';
 
 const TitleGroupContainer = styled.div`
   margin: 16px 0 32px 0;
@@ -83,12 +83,10 @@ const processor = unified()
   .use(prism)
   .use(math)
   .use(katex)
+  // @ts-ignore
   .use(rehype2react, {
     createElement: React.createElement,
-    components: {
-      // @ts-ignore
-      chess: Chess
-    }
+    components: { chess: Chess }
   });
 
 const Article = ({ article }: ArticleComponentProps) => {

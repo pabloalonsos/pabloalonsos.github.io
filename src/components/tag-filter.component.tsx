@@ -3,7 +3,7 @@ import _ from 'lodash';
 import styled from 'styled-components';
 
 import { Tag } from 'antd';
-import {useHistory, useLocation} from "react-router";
+import { useNavigate,  useLocation} from "react-router";
 
 interface TagFilterProps {
   tags: object;
@@ -40,7 +40,7 @@ function tagExtractor(query: string) {
 
 const TagFilter = ({ tags }: TagFilterProps) => {
   const { pathname, search: query }= useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [ selectedTags, setSelectedTags ] = useState<string[]>([]);
 
   useEffect(() => {
@@ -51,11 +51,11 @@ const TagFilter = ({ tags }: TagFilterProps) => {
     const newSelectedTags = _.includes(selectedTags, tag)
       ? _.without(selectedTags, tag)
       : [...selectedTags, tag];
-    history.replace(`${pathname}?${_.map(newSelectedTags, (sTag) => `tag=${sTag}`).join('&')}`);
+    navigate(`${pathname}?${_.map(newSelectedTags, (sTag) => `tag=${sTag}`).join('&')}`, {replace: true});
   }
 
   function onClearAllTags() {
-    history.replace(pathname);
+    navigate(pathname, {replace: true});
   }
 
   return (
