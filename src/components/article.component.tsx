@@ -15,12 +15,13 @@ import remark2rehype from "remark-rehype";
 import rehype2react from 'rehype-react';
 import math from 'remark-math';
 import raw from 'rehype-raw';
+import katex from 'rehype-katex';
+import emoji from 'remark-emoji';
 // @ts-ignore
 import prism from '@mapbox/rehype-prism';
 
 //import 'prism-themes/themes/prism-material-light.css';
 import 'prism-themes/themes/prism-base16-ateliersulphurpool.light.css';
-import katex from 'rehype-katex';
 
 const TitleGroupContainer = styled.div`
   margin: 16px 0 32px 0;
@@ -45,7 +46,7 @@ const PublishedDate = styled.div`
 const ArticleContainer = styled.div`
   margin: 0 auto;
 
-  p {
+  p, li {
     font-size: 18px;
     line-height: 1.6;
   }
@@ -79,6 +80,7 @@ interface ArticleComponentProps {
 const processor = unified()
   .use(markdown)
   .use(remark2rehype, { allowDangerousHtml: true })
+  .use(emoji)
   .use(raw)
   .use(prism)
   .use(math)

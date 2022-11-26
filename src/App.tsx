@@ -9,6 +9,7 @@ import {
 import Header from './containers/header.container';
 import Footer from './containers/footer.container';
 import About from "./containers/about.container";
+import Media from "./containers/media.container";
 import Post from "./containers/post.container";
 import HomeFeed from "./containers/home-feed.container";
 import PostIndex from "./containers/post-archive.container";
@@ -36,6 +37,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeFeed />}/>
             <Route path="/about" element={<About />}/>
+            <Route path="/media" element={<Media />}/>
             <Route path="/posts/:slug" element={<Post /> }/>
             <Route path="/drafts/:slug" element={<Post />}/>
             <Route path="/archive" element={<PostIndex />}/>
