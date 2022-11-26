@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
+import { createGlobalStyle } from "styled-components";
+import { ThemeProvider } from '@zendeskgarden/react-theming';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import ReactGA from 'react-ga';
-import {createGlobalStyle} from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -18,16 +18,12 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-// console.log("Initializing Google Analytics");
-// ReactGA.initialize('G-PX5YJ2J26M');
-// console.log("Google Analytics initialized");
-
-ReactDOM.render(
-  <>
+const root = createRoot(document.getElementById('root')!);
+root.render(
+  <ThemeProvider>
     <GlobalStyles />
     <App />
-  </>,
-  document.getElementById('root')
+  </ThemeProvider>,
 );
 
 // If you want your app to work offline and load faster, you can change
