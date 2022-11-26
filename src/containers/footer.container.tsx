@@ -15,7 +15,7 @@ function Footer() {
     <div>
       <Divider/>
       <StyledFooter>
-        <p>Follow Site.org posts: <a href="https://twitter.com/site-org" target="_blank" rel="noopener noreferrer">Twitter</a>, <Link to="/rss">RSS feed</Link>.</p>
+        <p>Follow {window.location.host} posts: <a href="https://twitter.com/pabloalonsos" target="_blank" rel="noopener noreferrer">Twitter</a>, <Link to="/rss">RSS feed</Link>.</p>
         <p>Follow <a href="https://twitter.com/pabloalonsos" target="_blank" rel="noopener noreferrer">@pabloalonsos</a> on Twitter if you’d like.</p>
         <p>© 2020 Pablo Alonso Subiñas</p>
       </StyledFooter>

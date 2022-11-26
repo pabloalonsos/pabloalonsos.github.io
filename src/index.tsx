@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ReactGA from 'react-ga';
 import {createGlobalStyle} from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -16,6 +17,8 @@ const GlobalStyles = createGlobalStyle`
     width: 100%;
   }
 `
+
+ReactGA.initialize('G-PX5YJ2J26M');
 
 ReactDOM.render(
   <>
