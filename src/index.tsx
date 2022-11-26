@@ -18,7 +18,9 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 
-ReactGA.initialize('G-PX5YJ2J26M');
+// console.log("Initializing Google Analytics");
+// ReactGA.initialize('G-PX5YJ2J26M');
+// console.log("Google Analytics initialized");
 
 ReactDOM.render(
   <>
