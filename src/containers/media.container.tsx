@@ -19,14 +19,18 @@ type Game = {
 }
 
 const books: Book[] = [
-  { name: 'The Blade Itself', author: 'Joe Abercrombie', status: Status.READING, link: '', description: ''},
+  { name: 'The Alloy of Law', author: 'Brandon Sanderson', status: Status.READING, link: '', description: ''},
+  { name: 'Piranesi', author: 'Susan C. Clarke', status: Status.COMPLETED, link: '', description: ''},
+  { name: 'The Blade Itself', author: 'Joe Abercrombie', status: Status.COMPLETED, link: '', description: ''},
   { name: 'Hyperion', author: 'Dan Simmons', status: Status.COMPLETED, link: '', description: ''},
   { name: 'The Fall of Hyperion', author: 'Dan Simmons', status: Status.COMPLETED, link: '', description: ''}
 ]
 
 const games: Game[] = [
-  { name: 'God of War', platform: 'PS4', status: Status.PLAYING, link: '', description: ''},
-  { name: 'Horizon Forbidden West', platform: 'PS5', status: Status.PLAYING, link: '', description: ''},
+  // { name: 'God of War', platform: 'PS4', status: Status.PLAYING, link: '', description: ''},
+  // { name: '', platform: 'PS4', status: Status.PLAYING, link: '', description: ''},
+  { name: 'God of War', platform: 'PS4', status: Status.COMPLETED, link: '', description: ''},
+  { name: 'Horizon Forbidden West', platform: 'PS5', status: Status.COMPLETED, link: '', description: ''},
   { name: 'Persona 5 Royal', platform: 'PS4', status: Status.ON_HOLD, link: '', description: ''},
 ]
 

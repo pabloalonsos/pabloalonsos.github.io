@@ -14,10 +14,6 @@ function About() {
       <a href="https://linkedin.com/in/pabloalonsos">LinkedIn</a>
       <br/>
       <a href="/">Recursion</a>
-      <h2>Currently busy with</h2>
-      <ul>
-        <li>Reading: <a href="https://en.wikipedia.org/wiki/The_Stone_Sky">The Stone Sky</a></li>
-      </ul>
     </>
   )
 }
